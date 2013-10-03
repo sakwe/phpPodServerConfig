@@ -1,0 +1,72 @@
+
+.podserver_container {
+	width: 100%;
+    	text-align: center;	
+}
+
+
+FORM {
+	width:550px;
+	display: inline-block;
+    	text-align: center;
+	border:solid #48f 3px;border-radius:8px;-moz-border-radius: 8px;-webkit-border-radius: 8px;
+}
+FORM * {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+}
+
+IFRAME {
+	width:100%;
+	border:none;
+	border-top:solid #48f 3px; 
+	border-bottom:solid #48f 3px; 
+	height:50px;
+	margin-bottom:10px;
+}
+
+H1 { font-weight:bold;font-size: 18px;}
+
+H2 { font-weight:bold;}
+
+HR { border:solid 1px #48f;}
+
+TEXTAREA, INPUT, LABEL {
+	margin: 0 5px 5px 0
+}
+TEXTAREA, INPUT {
+	border: #666 1px solid; 
+	background-color: #fff;
+	width: 250px; 
+}
+TEXTAREA {
+	width: 250px; 
+	height: 200px
+}
+FORM P {
+	clear: both; margin: 0
+}
+FORM LABEL {
+	float: left; width: 250px; text-align: right
+}
+#submit ,input[type="button"] , .msg {
+	border: 1px #000 solid; cursor: pointer; padding: 1px; color: #fff; background-color: #006633; 
+}
+
+input[type="checkbox"] , select{float:left;margin: 0 5px 5px 5px}
+
+#submit:hover , input[type="button"]:hover {
+	border: 1px red solid
+}
+
+#record{
+	margin-top:5px;
+}
+
+.alerte {
+	font-weight: bold; font-size: 14px
+}
+.focus {
+	background: #ff9
+}
+
+
