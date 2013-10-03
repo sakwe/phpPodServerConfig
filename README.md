@@ -1,20 +1,34 @@
-Logins par défaut : 
+The curent projet is actually unusable.
+---------------------------------------
 
-- "root" password -> "diaspora"
-- "diaspora" password -> "diaspora" (utlisateur par défaut, fait partie des "sudoers")
+Goal : 
 
-Fichiers/dossiers importants : 
+- run a VM pre-installed and configured for a Diaspora* Pod hosting
+- configure local ip, domain name, dydns/dynovh, ssl, Diaspora*, mail and services
+- apply to system configuration : passwords, network, apache, diaspora and ipcheck(.py)
+- quikly obtain an operational Diaspora Pod 
 
-- racine diaspora : /home/diaspora/diaspora
+This project is complement with a (Debian) Virtual (Server) Machine
 
-- script diaspora : /etc/init.d/diaspora
+I'll tell more in the README and README-DEV next time ;-)
 
-- certificats : /home/diaspora/certicate
+Current uncategorised notes : 
 
-- backups : /home/diaspora/backup.zip
+	Default login : 
 
-- racine paramètres du Pod : /var/www/
+	- "root" password -> "diaspora"
+	- "diaspora" password -> "diaspora" (defaul user member of "sudoers")
 
-- auto login : /etc/inittab (ligne : 1:2345:respawn:/sbin/getty 38400 --autologin diaspora tty1)
+	Files and directories : 
 
-- écran d'accueil : /usr/local/bin/dynmotd
+	- diaspora root : /home/diaspora/diaspora
+
+	- script diaspora : /etc/init.d/diaspora
+
+	- certificates : /home/diaspora/certicate
+
+	- backups : /home/diaspora/backup.zip
+
+	- auto login : /etc/inittab (ligne : 1:2345:respawn:/sbin/getty 38400 --autologin diaspora tty1)
+
+	- console home screen : /usr/local/bin/dynmotd
