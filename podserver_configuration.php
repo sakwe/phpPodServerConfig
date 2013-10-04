@@ -89,7 +89,7 @@ class ItemConfiguration{
 			$html.= '</label>'."\n";
 			}
 		// add dependance of the item for js managing in user interface
-		if ($this->type != 'none' or $this->type != '') {
+		if ($this->depend != 'none' or $this->depend != '') {
 			$html.= '<input type="hidden" id="dependance_for_'. $this->name . '" value="'. $this->depend . '" />'."\n";
 		}	
 		$html.= '<input type="hidden" id="title_for_'. $this->name . '" value="'. $this->title . '" />'."\n";

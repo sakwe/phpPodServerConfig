@@ -22,7 +22,7 @@ class Actiondispatcher{
 				// initiate ssh console connexion with localhost 
 				$ssh = new Net_SSH2('localhost');
 				// login to ssh console with the diaspora user
-				if (!$ssh->login(USER_FOR_DIASPORA_AND_SUDOER, $_POST['password'])) {
+				if (!$ssh->login(SYST_USER_FOR_DIASPORA, $_POST['password'])) {
 					$_SESSION['logged'] = 'error';				
 				}else{				
 					$_SESSION['logged'] = 'true';
@@ -87,6 +87,7 @@ class Actiondispatcher{
 						unlink($_SERVER['DOCUMENT_ROOT'].'/uploads/' . $_POST['action_on_item']);
 						}
 					}
+				$this->status = 1;
 				header("Location: /");
 				break;
 
@@ -100,7 +101,7 @@ class Actiondispatcher{
 				// initiate ssh console connexion with localhost 
 				global $ssh;
 				$ssh = new Net_SSH2('localhost');
-				// login to ssh console with the diaspora user
+				// login to ssh console with the root user
 				if (!$ssh->login('root', $_SESSION['password'])) {
 					$_SESSION['logged'] = 'error';				
 				}else{
@@ -111,7 +112,7 @@ class Actiondispatcher{
 						$remp[0]= '';
 						$remp[1]= '';
 						// get the single maker name
-						echo $maker_name = basename($maker);
+						$maker_name = basename($maker);
 						$maker_name = str_replace($pat,$remp,$maker_name);
 						// set the temp conf file for the maker
 						global $config_done;
@@ -124,8 +125,8 @@ class Actiondispatcher{
 						if($file = @fopen($config_done, 'w')) {
 							fwrite($file,$config_generated);
 							fclose($file);
-							// execute the system copy files to apply configuration
-							echo $ssh->exec('cp ' . $config_done . ' ' . $config_syst);
+							// copy files to their system path to apply configuration
+							$ssh->exec('cp ' . $config_done . ' ' . $config_syst);
 						}								
 							/* NOTE : you can add all makers you want by adding a file "config/makers/make-config-YOURMAKERNAME.php" 
 							   In your maker file, you have to correctly configure 
@@ -136,10 +137,19 @@ class Actiondispatcher{
 							*/
 					}
 				}
+				// copy uploaded files to their system directory
+				foreach ($this->podServerConfiguration->itemsConfiguration as $item){
+					$file_uploads = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $item->name;
+					$fils_system  = $item->value . $item->name;
+					if ($item->type == 'file' && $item->value != '' &&  file_exists($file_uploads) &&  file_exists($item->value) )  {
+						$ssh->exec('cp ' . $file_uploads . ' ' . $fils_system);
+					}
+				}
 				$this->status = 1;
 				break;
 
 			// run the system script associated to the current action
+			// this action will be dispatched to "system_status.php" monitor to be able to display HTML during network and apache shutdown
 			default : 
 				/* NOTE : you can add all action you want by adding a file "system/actions/exec_YOURACTION.php"
 					For clean organisation and secure execution : 
