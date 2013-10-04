@@ -1,5 +1,5 @@
 <?php
-
+define('USER_FOR_DIASPORA_AND_SUDOER','diaspora');
 define('CONFIG_DIRECTORY_DIASPORA','/home/diaspora/diaspora/');
 define('CONFIG_DIRECTORY_SSL_CERTIFICATE','/home/diaspora/certificate/');
 define('CONFIG_FILE_NETWORK_INTERFACES','/etc/network/interfaces');

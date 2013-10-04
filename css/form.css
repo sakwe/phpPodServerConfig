@@ -31,7 +31,7 @@ H2 { font-weight:bold;}
 HR { border:solid 1px #48f;}
 
 TEXTAREA, INPUT, LABEL {
-	margin: 0 5px 5px 0
+	margin: 5px 5px 5px 0px;
 }
 TEXTAREA, INPUT {
 	border: #666 1px solid; 
@@ -48,11 +48,37 @@ FORM P {
 FORM LABEL {
 	float: left; width: 250px; text-align: right
 }
-#submit ,input[type="button"] , .msg {
-	border: 1px #000 solid; cursor: pointer; padding: 1px; color: #fff; background-color: #006633; 
+
+TEXTAREA, INPUT {
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+	border:solid 1px #AFAAB4;
+	margin:0px 0px 10px 0px;
+	-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+	height:20px;
+	
+}
+TEXTAREA:disabled, INPUT:disabled {
+	box-shadow:none;
+	border: #CCCCCC 1px solid; 
 }
 
-input[type="checkbox"] , select{float:left;margin: 0 5px 5px 5px}
+input[type="button"]:disabled{
+	background-color: #CCCCCC; 
+	cursor: default;	
+}
+
+input[type="button"]:disabled:hover{
+	border: 1px solid #CCCCCC;
+	cursor: default;	
+}
+
+
+#submit ,input[type="button"] , .msg {
+	height:30px;
+	border: 1px #000 solid; cursor: pointer; padding: 1px; color: #fff; background-color: #4488FF; 
+}
+
+input[type="checkbox"] , select{float:left;margin: 5px 5px 5px 10px}
 
 #submit:hover , input[type="button"]:hover {
 	border: 1px red solid

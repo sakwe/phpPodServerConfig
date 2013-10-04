@@ -11,6 +11,7 @@ It loads the configuration, execute the task if needed and render the interface
 // need a session for some datas
 session_start();
 
+
 // get the system configuration (directories, files, command)
 include($_SERVER['DOCUMENT_ROOT'].'/config.php');
 

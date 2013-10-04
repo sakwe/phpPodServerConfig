@@ -1,5 +1,5 @@
-The curent projet is actually unusable.
----------------------------------------
+The curent projet is unusable.
+------------------------------
 
 Goal : 
 
@@ -12,7 +12,7 @@ This project is complement with a (Debian) Virtual (Server) Machine
 
 I'll tell more in the README and README-DEV next time ;-)
 
-Current uncategorised notes : 
+Current uncategorised personal notes : 
 
 	Default login : 
 
