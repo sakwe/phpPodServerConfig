@@ -126,7 +126,7 @@ class ItemConfiguration{
 
 			case 'system' : 
 				// a system item will render a button that submit the form with the configured action name in the config-map.php
-				$html.= '<label></label><input type="button" id="'. $this->name . '" name="'. $this->name . '" value="'.$this->label.'" onclick="formSubmit(\''.$this->values.'\');" />';			
+				$html.= '<label></label><input class="button" type="button" id="'. $this->name . '" name="'. $this->name . '" value="'.$this->label.'" onclick="formSubmit(\''.$this->values.'\');" />';			
 				break;
 
 			case 'html' : 

@@ -19,7 +19,7 @@
 <script>
 
 function monitor_apache(){
-	document.getElementById("podserver_monitor").innerHTML = "podserver_monitor";
+	document.getElementById("podserver_monitor").innerHTML = "podserver_monitor<br />bientôt en action pour faire plein de choses !";
 }
 
 window.setInterval("monitor_apache()",3000);

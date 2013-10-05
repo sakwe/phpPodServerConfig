@@ -40,7 +40,7 @@ class PodServer {
 		if ($this->logged != 'true'){
 			$interface.= $this->getAuth();
 		}else{	
-			$interface.= $this->getStatus();
+			$interface.= $this->getMonitor();
 			$interface.= $this->getTabs();
 			$interface.= $this->getFooter();
 		}
@@ -58,7 +58,7 @@ class PodServer {
 	}
 
 	public function getTitle(){
-		return '<h1>'.BIG_TITLE_POD_CONFIGURATION.'</h1>';
+		return '<div class="header_bar">'.BIG_TITLE_POD_CONFIGURATION.'</div>';
 
 	}
 
@@ -71,9 +71,9 @@ class PodServer {
 		return $authentication;
 	}
 
-	public function getStatus(){
-		// include the status iframe that use js to refesh state of service : principaly apache.
-		return '<iframe src="system/system-status.php" scrolling="auto"></iframe>';
+	public function getMonitor(){
+		// include the monitor iframe that use js to refesh state of service : principaly apache.
+		return '<iframe src="system/system-monitor.php" scrolling="auto"></iframe>';
 
 	}
 

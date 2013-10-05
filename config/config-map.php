@@ -93,7 +93,7 @@ $podserver_config_map = array
 	// pod items to configure
 	array('title_diasp','pod','none','title','',''),
 	array('domain_name','pod','none','text','',''),
-	array('pod_port','pod','none','text','',''),
+	array('pod_port','pod','none','text','3000',''),
 	array('pod_name','pod','none','text','',''),
 	array('title_ssl','pod','none','title','',''),
 	array('ssl_enable','pod','none','checkbox','',''),

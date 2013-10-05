@@ -4,12 +4,17 @@
     	text-align: center;	
 }
 
+BODY {
+	background-image:url('../images/hatched-light.jpg');
+}
 
 FORM {
 	width:550px;
 	display: inline-block;
     	text-align: center;
-	border:solid #48f 3px;border-radius:8px;-moz-border-radius: 8px;-webkit-border-radius: 8px;
+	border:solid #272222 3px;border-radius:8px;-moz-border-radius: 8px;-webkit-border-radius: 8px;
+	padding:0px;
+	background-color:#EEE;
 }
 FORM * {
 	font: 12px Verdana, Arial, Helvetica, sans-serif;
@@ -18,17 +23,21 @@ FORM * {
 IFRAME {
 	width:100%;
 	border:none;
-	border-top:solid #48f 3px; 
-	border-bottom:solid #48f 3px; 
-	height:50px;
+	border-top:solid #272222 3px; 
+	border-bottom:solid #272222 3px; 
+	height:80px;
+	margin:0px;
 	margin-bottom:10px;
+	/*background-image:url('../images/seedsstripe.gif');*/
+	background-size:550px 80px;
+	background-color:#939393;
 }
 
 H1 { font-weight:bold;font-size: 18px;}
 
-H2 { font-weight:bold;}
+H2 { font-weight:bold;text-align:left;}
 
-HR { border:solid 1px #48f;}
+HR { border:solid 1px #272222;}
 
 TEXTAREA, INPUT, LABEL {
 	margin: 5px 5px 5px 0px;
@@ -58,8 +67,20 @@ TEXTAREA, INPUT {
 	
 }
 TEXTAREA:disabled, INPUT:disabled {
-	box-shadow:none;
 	border: #CCCCCC 1px solid; 
+}
+
+input[type="button"] {
+	height:30px;
+	cursor: pointer; 
+	padding: 1px;
+	color: #fff; 
+	background-color: #57B6F7; 
+}
+
+input[type="button"]:hover {
+	border: 1px #939393 solid;
+	background-color: #067DCF;
 }
 
 input[type="button"]:disabled{
@@ -68,20 +89,13 @@ input[type="button"]:disabled{
 }
 
 input[type="button"]:disabled:hover{
-	border: 1px solid #CCCCCC;
+        border: 1px solid #CCCCCC;
 	cursor: default;	
 }
 
-
-#submit ,input[type="button"] , .msg {
-	height:30px;
-	border: 1px #000 solid; cursor: pointer; padding: 1px; color: #fff; background-color: #4488FF; 
-}
-
-input[type="checkbox"] , select{float:left;margin: 5px 5px 5px 10px}
-
-#submit:hover , input[type="button"]:hover {
-	border: 1px red solid
+input[type="checkbox"] , select{
+	float:left;
+	margin: 5px 5px 5px 10px;
 }
 
 #record{
@@ -94,5 +108,16 @@ input[type="checkbox"] , select{float:left;margin: 5px 5px 5px 10px}
 .focus {
 	background: #ff9
 }
+
+.header_bar{
+	padding-top:3px;
+	margin:0px;
+	height:35px;
+	font-size:24px;
+	color:#fff;
+	background-image:url('../images/header-bg.png');
+}
+
+
 
 

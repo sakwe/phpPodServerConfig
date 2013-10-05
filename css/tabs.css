@@ -1,6 +1,6 @@
 div.content {
-    border-top: #48f solid 3px;
-    border-bottom: #48f solid 3px;
+    border-top: #272222 solid 3px;
+    border-bottom: #272222 solid 3px;
     clear: left;
     padding: 1em;
 
@@ -18,17 +18,18 @@ ol#toc {
 }
 
 ol#toc a {
-    background: #bdf url(tabs.gif);
-    color: #008;
+    background: #939393;
+    color: #FFF;
     display: block;
     float: left;
     height: 2em;
     padding-left: 10px;
     text-decoration: none;
+    border-radius: 5px 5px 0px 0px;
 }
 
 ol#toc a:hover {
-    background-color: #3af;
+    background-color: #222;
     background-position: 0 -120px;
 }
 
@@ -42,7 +43,7 @@ ol#toc li {
 }
 
 ol#toc li a.active {
-    background-color: #48f;
+    background-color: #272222;
     background-position: 0 -60px;
     color: #fff;
     font-weight: bold;

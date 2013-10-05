@@ -10,7 +10,7 @@ define('BUTTON_LOGOUT','Déconnecter');
 
 define('ERROR_SSH_LOGIN_TRY_AGAIN','Mot de pass incorrect. Essayez encore.');
 
-define('ENTER_PASSWORD_FOR_USER','Saisissez le mode de passe pour l\utilisateur');
+define('ENTER_PASSWORD_FOR_USER','Saisissez le mode de passe pour l\'utilisateur');
 
 define('BUTTON_RECORD','Enregistrer');
 
@@ -44,7 +44,7 @@ $label_tab_general = "General";
 $label_tab_mail = "Mail";
 $label_tab_services = "Services";
 $label_tab_administration = "Administration";
-
+$label_tab_system = "Système";
 
 // Labels and titles for network configuration
 $label_title_network	= "Configuration réseau";
@@ -56,5 +56,15 @@ $label_dyndns_method	= "Fournisseur DynDNS";
 $label_dyndns_login	= "Login DynDNS";
 $label_dyndns_pass	= "Pass DynDNS";
 
+// Labels and titles for pod configuration
+$label_title_diasp	= "Indentification de votre Pod Diaspora*";
+$label_domain_name	= "Nom de domaine";
+$label_pod_port		= "Port utilisé par Rails";
+$label_pod_name		= "Nom du Pod";
+$label_title_ssl	= "Configuration SSL";
+$label_ssl_enable	= "Activer SSL (conseillé)";
+$label_ssl_cert		= "Certificat SSL (.cert ou .crt)";
+$label_ssl_key		= "Clé SSL (.key)";
+$label_ssl_ca		= "Certificat d'autorité (.ca)";
 
 ?>
