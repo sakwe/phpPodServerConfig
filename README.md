@@ -1,23 +1,23 @@
-The curent projet is unusable.
+The project is currently unusable.
 ------------------------------
 
 Goal : 
 
 - run a VM pre-installed and configured for a Diaspora* Pod hosting
-- configure local ip, domain name, dydns/dynovh, ssl, Diaspora*, mail and services
+- configure local ip, domain name, dyndns/dynovh, ssl, Diaspora*, mail and services
 - apply to system configuration : passwords, network, apache, diaspora and ipcheck(.py)
-- quikly obtain an operational Diaspora Pod 
+- quikcly obtain an operational Diaspora Pod 
 
 This project is complement with a (Debian) Virtual (Server) Machine
 
 I'll tell more in the README and README-DEV next time ;-)
 
-Current uncategorised personal notes : 
+Current uncategorized personal notes : 
 
 	Default login : 
 
 	- "root" password -> "diaspora"
-	- "diaspora" password -> "diaspora" (defaul user member of "sudoers")
+	- "diaspora" password -> "diaspora" (default user member of "sudoers")
 
 	Files and directories : 
 
