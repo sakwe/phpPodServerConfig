@@ -1,39 +1,25 @@
-<<<<<<< HEAD
+
 === phpPodServerConfig ===
-=======
+
 The project is currently unusable.
 ------------------------------
->>>>>>> a445c957953a931c53f507e6da0597fed26cfdb0
 
 Version: DEVELOPMENT
 
-<<<<<<< HEAD
 Authors: Sakwe
 Contributors: Flaburgan
 Tags: diaspora, pod, configuration
 Tested with Apache 2.2.22 Php5 on Debian Wheezy Stable
 Require: apache, openssl, openssh 
-=======
-- run a VM pre-installed and configured for a Diaspora* Pod hosting
-- configure local ip, domain name, dyndns/dynovh, ssl, Diaspora*, mail and services
-- apply to system configuration : passwords, network, apache, diaspora and ipcheck(.py)
-- quikcly obtain an operational Diaspora Pod 
->>>>>>> a445c957953a931c53f507e6da0597fed26cfdb0
 
 Tool to easily configure a server for Diaspora* Pod hosting
 -----------------------------------------------------------
 
-
-<<<<<<< HEAD
 === Description ===
-=======
-Current uncategorized personal notes : 
->>>>>>> a445c957953a931c53f507e6da0597fed26cfdb0
 
-The first aim of this project is to gather principal configuration items of different softwares or services that are needed to run a Diaspora* Pod.
+The first aim of this project is to gather principal configuration items of different softwares and services that are needed to run a Diaspora* Pod.
 It render a very basic "all-in-one" interface that enable to catch, record and apply the configuration to the system. 
 It configure the Diaspora* application, the apache Virtual Host for the Pod, the network interface with static IP of your choice, the DynDns/DynOVH script that refresh your dynamic IP, the SSL files to enable HTTPS on your Pod.
-
 
 === Additional Project ===
 
