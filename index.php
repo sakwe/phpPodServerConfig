@@ -1,16 +1,18 @@
 <?php
-/* 
 
-index.php : PodServer administration entry
-------------------------------------------
 
-It loads the configuration, execute the task if needed and render the interface
+/*** 
+ *
+ *  index.php : PodServer administration entry
+ *  ------------------------------------------
+ *
+ * It loads the configuration, execute the task if needed and render the interface
+ *
+ */
 
-*/
 
 // need a session for some datas
 session_start();
-
 
 // get the system configuration (directories, files, command)
 include($_SERVER['DOCUMENT_ROOT'].'/config.php');
@@ -46,13 +48,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/podserver.php');
 
 // instanciate the PodServer configurator (loads the configuration)
 $podServer = new PodServer();
-	/* 
-	From here, you can access to the global configuration items. Exemples : 
-		- $podServer->podServerConfiguration[item_idx]->name to get the name of an item
-		- $podServer->podServerConfiguration[item_idx]->value to get its value
-		- $podServer->actionDispatch('record') to record the current setting in global configuration file
-		- $podServer->actionDispatch('reboot') to reboot the server
-	*/
+
+	/** 
+	 * From here, you can access to the global configuration items. Exemples : 
+	 *	- $podServer->podServerConfiguration[item_idx]->name to get the name of an item
+	 *	- $podServer->podServerConfiguration[item_idx]->value to get its value
+	 *	- $podServer->actionDispatch('record') to record the current setting in global configuration file
+	 *	- $podServer->actionDispatch('reboot') to reboot the server
+	 */
 
 // call the dispatcher to execute the user action (recording configuration, apply configurations or other system commands)
 if (isset($_POST['action'])) echo $podServer->actionDispatch($_POST['action']);

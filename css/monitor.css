@@ -1,4 +1,96 @@
 
 .podserver_monitor{
 	color:#DDD;
+	font-size:10px;
 }
+
+
+FORM * {
+	font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+H1 { font-weight:bold;font-size: 12px;}
+
+H2 { font-weight:bold;text-align:left;}
+
+HR { border:solid 1px #272222;}
+
+TEXTAREA, INPUT, LABEL {
+	float: left; 
+}
+
+FORM P {
+	clear: none;
+}
+FORM LABEL {
+	width: 150px; text-align: right;margin-top:5px;
+}
+
+
+.label_disabled{
+	color:gray;
+}
+
+TEXTAREA, INPUT {
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+	border:solid 1px #AFAAB4;
+	-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+	height:20px;
+	width: 150px;
+	
+}
+TEXTAREA:disabled, INPUT:disabled {
+	border: #CCCCCC 1px solid; 
+}
+
+input[type="button"],input[type="submit"] {
+	height:23px;
+	margin-top:-11px;
+	cursor: pointer; 
+	color: #fff; 
+	background-color: #57B6F7; 
+	float: left;
+}
+
+input[type="button"]:hover,input[type="submit"]:hover {
+	border: 1px #939393 solid;
+	background-color: #067DCF;
+}
+
+input[type="button"]:disabled,input[type="submit"]:disabled{
+	background-color: #CCCCCC; 
+	cursor: default;	
+}
+
+input[type="button"]:disabled:hover,input[type="submit"]:disabled:hover{
+        border: 1px solid #CCCCCC;
+	cursor: default;	
+}
+
+input[type="checkbox"] , select{
+	float:left;
+}
+
+.task_queued b{
+	font-size:12px;
+	color:#CCCCCC;
+}
+
+.task_queued span{
+	font-size:12px;
+	font-weight:bold;
+	color:blue;
+}
+
+.task_done b{
+	font-size:12px;
+	color:#CCCCCC;
+}
+
+.task_done span{
+	font-size:12px;
+	font-weight:bold;
+	color:green;
+}
+

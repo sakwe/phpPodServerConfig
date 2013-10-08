@@ -4,6 +4,8 @@ define('TITLE_PODSERVER','PodServer');
 
 define('BIG_TITLE_POD_CONFIGURATION','Configuration et lancement rapide du Pod');
 
+define('LABEL_PASSWORD','Mot de passe');
+
 define('BUTTON_LOGIN','Connexion');
 
 define('BUTTON_LOGOUT','Déconnecter');
@@ -32,6 +34,14 @@ define('UPLOAD_FILE_ERROR','Erreur lors de l\'envoi de fichier');
 
 define('FILE_GENERATED_BY','Fichier généré par');
 
+define('SYSTEM_TASK_IN_QUEUE','Tâche dans la file d\'attente');
+
+define('TASK_COPY_FILE_CONFIG','Copie d\'un fichier de configuration système');
+
+define('TASK_COPY_FILE_ITEM','Copie d\'un fichier système envoyé');
+
+define('ERROR_SSHLOGIN_INTO_SSHEXEC','Erreur de login ssh lors de l\'exécution de la commande');
+
 define('ERROR_CAN_NOT_OPEN_CONFIG_PODSERVER_PHP','Impossible d\'ouvrir le fichier "config/config-podserver.php"');
 
 define('NO_METHOD_TO_RENDER_THIS_ITEM','Ce type de champ n\'est pas pris en charge');
@@ -45,6 +55,7 @@ $label_tab_mail = "Mail";
 $label_tab_services = "Services";
 $label_tab_administration = "Administration";
 $label_tab_system = "Système";
+$label_tab_install = "Install";
 
 // Labels and titles for network configuration
 $label_title_network	= "Configuration réseau";
@@ -66,5 +77,76 @@ $label_ssl_enable	= "Activer SSL (conseillé)";
 $label_ssl_cert		= "Certificat SSL (.cert ou .crt)";
 $label_ssl_key		= "Clé SSL (.key)";
 $label_ssl_ca		= "Certificat d'autorité (.ca)";
+
+// Labels and titles for general configuration
+$label_title_general		= "Configuration générale de votre Pod";
+$label_jquery_enable		= "Utiliser jquery via Google (recommandé)";
+$label_google_analytics_key	= "Votre clé Google analytics";
+$title_google_analytics_key	= "Cette option vous permet de suivre vos statistiques de visites via Google analytics";
+$label_enable_registrations	= "Autoriser l'inscription sur le Pod";
+$label_autofollow_on_join	= "Suivre automatiquement une personne à l'inscription";
+$label_autofollow_on_join_user	= "Personne à suivre automatiquement";
+$label_invitation_enable	= "Autoriser les invitations";
+$label_invitation_count		= "Nombre maximum d'invitation par utilisateur";
+$label_paypal_hosted_button_id	= "Identifiant de votre bouton de don Paypal";
+$title_paypal_hosted_button_id	= "Cette option vous permet d'obtenir un bouton de don Paypal à votre nom sur votre Pod";
+$label_bitcoin_wallet_id	= "Identifiant de votre bouton de don Bitcoin";
+$title_bitcoin_wallet_id	= "Cette option vous permet d'obtenir un bouton de don Bitcoin à votre nom sur votre Pod";
+
+// Labels and titles for mail configuration
+$label_title_mail		= "Configuration des paramètres mail";
+$label_mail_enable		= "Activer la fonctionnalité mail";
+$label_mail_method		= "Méthode d'envoi de courrier";
+$label_sender_address		= "Adresse de l'expéditeur";
+$label_smtp_host		= "Host SMTP";
+$label_smtp_port		= "Port SMTP";
+$label_smtp_authentication	= "Méthode d'autentification SMTP";
+$label_smtp_login		= "Identifiant";
+$label_smtp_pass		= "Mot de passe";
+$label_mail_tls_auto		= "TLS automatique";
+$label_mail_helo		= "Host pour la commande HELO";
+$label_openssl_verify_mode	= "Mode de négociation openSSL";
+$label_message_bus_api_key	= "API Key (si méthode message bus)";
+
+// Labels and titles for services configuration
+$label_title_services		= "Configurer les services connectés à votre Pod";
+$label_facebook_enable		= "Activer le partage sur Facebook";
+$label_facebook_key		= "Clé";
+$label_facebook_secret		= "Secret";
+$label_twitter_enable		= "Activer le partage sur Twitter";
+$label_twitter_key		= "Clé";
+$label_twitter_secret		= "Secret";
+$label_tumblr_enable		= "Activer le partage sur Tumblr";
+$label_tumblr_key		= "Clé";
+$label_tumblr_secret		= "Secret";
+$label_wordpress_enable		= "Activer le partage sur Wordpress";
+$label_wordpress_key		= "Clé";
+$label_wordpress_secret		= "Secret";
+
+// Labels and titles for administration configuration
+$label_title_diasp_admin	= "Paramètres du Podmin (administrateur du Pod)";
+$label_admin_account		= "Utilisateur Podmin (identifiant court)";
+$label_podmin_email		= "Adresse mail du Podmin";
+
+// Labels and titles for system actions
+$label_title_password_change = "Mot de passe pour les utilisateurs système";
+$label_f_pass_new = "Nouveau mot de passe";
+$label_f_pass_conf = "Confirmer le mot de passe";
+$label_sys_passchange = "Modifier le mot de passe";
+$label_title_system_manage = "Outils système";
+$label_sys_apply = "Appliquer la configuration au système";
+$label_sys_restart = "Redémarrer les services appropriés";
+$label_sys_reboot = "Redémarrer le serveur";
+$label_sys_shutdown = "Éteindre le serveur";
+$label_sys_update = "Mettre à jour le système";
+
+
+// Labels for this software install configuration items
+$label_DEF_SYST_USER_FOR_DIASPORA	= "Utilisateur système pour Diaspora*";
+$label_DEF_DIRECTORY_DIASPORA		= "Répertoire d'installation de Diaspora*";
+$label_DEF_DIRECTORY_SSL_CERTIFICATE	= "Répertoire système pour les certificats SSL";
+$label_DEF_FILE_NETWORK_INTERFACES	= "Fichier système de configuration réseau";
+$label_DEF_FILE_APACHE_VHOST		= "Fichier de configuration apache (VirtualHost)";
+$label_DEF_FILE_DYNDNS			= "Script de mise à jour DNS dynamique"
 
 ?>

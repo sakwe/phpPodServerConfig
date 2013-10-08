@@ -28,16 +28,16 @@ General tructure of the configuration datas in "$podserver_config_map[]" array :
 		/!\ you have to order items grouped by 'GROUP' field in the array feed below
 
 	3- DEPEND : put the name of the item from witch the accessibility depends
-		the field will be disabled if check box not checked or selected value is "none"
+		the field will be disabled if check box not checked or selected value is "none" or text value is empty
 
 	4- TYPE : the type of data renderer (text, pass, checkbox, select, title, file, system or html)
 		you can add a type renderer by adding the correct "switch case" in the "ItemConfiguration->getHTML()" method in the "podserver_configuration.php" file
 
-	5- DEFAULT_VALUE : will receive the correct value from the config file. Here you can put a default value for the item
-	   SYST_USER     : for "file" or "system" types 
+	5- DEFAULT_VALUE : will receive the correct value from the "config-podserver.php" file. Here you can put a default value for the item
+	   SYST_USER     : system user for "file" or "system" types 
 
 	6- POSSIBLE_VALUES : for select options items -> Put the possible values separated by coma (ex:'opt1,opt2,opt3')
-	   DIRECTORY_PATH  : for file types, if a directory exists, the file will be copied into when "apply" action is run
+	   DIRECTORY_PATH  : for file types, if a directory is given, the file into "uploads/" will be copied into when "apply" action is run
 	   ACTION          : for system types, it's the name of the action that will be run (see more below)
 
 Labels for items in the interface : 
@@ -64,7 +64,7 @@ Special items :
 
 	- "file" type	: will upload the file named with the "name" field  to the "uploads/" directory
 			  will copy the file to the directory path in "value" field (if given) on "apply" action
-			  will filter file extention with the "possible values" field. Types separated by coma (ex:'zip,gz,img')
+	NOT DONE -> will filter file extention with the "possible values" field. Types separated by coma (ex:'zip,gz,img')
 
 *************************************************/
 
@@ -76,6 +76,8 @@ $remp[0]= '';
 $remp[1]= '';
 $gateway =  preg_replace($pat,$remp,$output[0]);
 
+// get the domain name from current global configuration
+global $domain_name;
 
 $podserver_config_map = array
 	(
@@ -97,9 +99,9 @@ $podserver_config_map = array
 	array('pod_name','pod','none','text','',''),
 	array('title_ssl','pod','none','title','',''),
 	array('ssl_enable','pod','none','checkbox','',''),
-	array('ssl_cert','pod','ssl_enable','file','root',CONFIG_DIRECTORY_SSL_CERTIFICATE),
-	array('ssl_key','pod','ssl_enable','file','root',CONFIG_DIRECTORY_SSL_CERTIFICATE),
-	array('ssl_ca','pod','ssl_enable','file','root',CONFIG_DIRECTORY_SSL_CERTIFICATE),
+	array('ssl_cert','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+	array('ssl_key','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+	array('ssl_ca','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
 
 	// general items to configure
 	array('title_general','general','none','title','',''),
@@ -163,15 +165,31 @@ $podserver_config_map = array
 
 	//-------------------------------------------------------------
 	// apply action works seemed into PodServer code so you don't need the "system/actions/exec_apply.php"
-	// unless you need to change the default "apply" system tha works with makers 
+	// unless you need to change the default "apply" system that works with "config/makers/make-config-*.php" files 
 	array('sys_apply','system','none','system','','apply'),
 	//-------------------------------------------------------------
 
-	// these are system actions that run system/actions/exec_ACTIONAME.php scripts
+	// these are system action items that run system/actions/exec_ACTIONAME.php scripts
 	array('sys_restart','system','none','system','root','restart'),
 	array('sys_reboot','system','none','system','root','reboot'),
 	array('sys_shutdown','system','none','system','root','shutdown'),
-	array('sys_update','system','none','system','root','update')
+	array('sys_update','system','none','system','root','update'),
+
+
+	// these are PodServer software config items
+	// set your diaspora system user
+	array('DEF_SYST_USER_FOR_DIASPORA','install','none','text',SYST_USER_FOR_DIASPORA,''),
+	// set your diaspora directory
+	array('DEF_DIRECTORY_DIASPORA','install','none','text',DIRECTORY_DIASPORA,''),
+	// set your ssl directory
+	array('DEF_DIRECTORY_SSL_CERTIFICATE','install','none','text',DIRECTORY_SSL_CERTIFICATE,''),
+	// set the path to the network interfaces file
+	array('DEF_FILE_NETWORK_INTERFACES','install','none','text',FILE_NETWORK_INTERFACES,''),
+	// set the path to the vhost file for the diaspora virtual server in apache
+	array('DEF_FILE_APACHE_VHOST','install','none','text',FILE_APACHE_VHOST,''),
+	// set the path to the dyndns script 
+	array('DEF_FILE_DYNDNS','install','none','text',FILE_DYNDNS,'')
+
 	);
 
 ?>

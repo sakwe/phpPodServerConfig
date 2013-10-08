@@ -28,6 +28,10 @@ ol#toc a {
     border-radius: 5px 5px 0px 0px;
 }
 
+#tab_install{
+    background-color: #CCCCCC !important; 
+}
+
 ol#toc a:hover {
     background-color: #222;
     background-position: 0 -120px;
@@ -54,7 +58,7 @@ ol#toc li a.active span {
 }
 
 ol#toc span {
-    background: url(tabs.gif) 100% 0;
+    background: 100% 0;
     display: block;
     line-height: 2em;
     padding-right: 10px;

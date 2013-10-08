@@ -5,78 +5,86 @@ include($_SERVER['DOCUMENT_ROOT'].'/config/config-map.php');
 
 // include configuration and dispatch classes needed by PodServer class
 include($_SERVER['DOCUMENT_ROOT'].'/podserver_configuration.php'); 
+include($_SERVER['DOCUMENT_ROOT'].'/podserver_system.php'); 
 include($_SERVER['DOCUMENT_ROOT'].'/podserver_dispatcher.php'); 
 
 
-// the main object to instanciate : "PodServer"
+/** 
+ * The main object to instanciate : "PodServer"
+ */
 class PodServer {
 	
 	public $logged;
 	public $podServerConfiguration;
-	public $actiondispatcher;
+	public $podServerSystem;
+	public $podServerDispatcher;
 
-	// attach and load the "PodServerConfiguration" and "Actiondispatcher" for the "PodServer"
+	// attach and load the "PodServerConfiguration" and "PodServerDispatcher" for the "PodServer"
 	public function __construct() {
-		if (!isset($_SESSION['logged'])) $_SESSION['logged'] = 'false';
-		$this->logged = $_SESSION['logged'];
-		$this->podServerConfiguration = new PodServerConfiguration();
-		$this->actiondispatcher = new Actiondispatcher($this->podServerConfiguration);
+		$this->podServerSystem		= new PodServerSystem();
+		$this->podServerConfiguration	= new PodServerConfiguration($this->podServerSystem);
+		$this->podServerDispatcher	= new PodServerDispatcher($this->podServerConfiguration);
 	}
 	
 	// delegate "actions" to the "Actiondispatcher"
-	public function actionDispatch($action) {
-		return $this->actiondispatcher->execute($action);
+	public function actionDispatch($action,$target='/') {
+		return $this->podServerDispatcher->execute($action,$target);
 	}
 
-	// generate the HTML code to render the configuration tabs
+	// generate the HTML code to render the PodServer configuration interface
 	public function getInterface() {		
-		// assembly the global interface 		
-		$interface ='<form method="post" id="podserver" action="" enctype="multipart/form-data">'."\n".
-			'<input type="hidden" name="action" id="action" value="" />'."\n".
-			'<input type="hidden" name="action_on_item" id="action_on_item" value="" />'."\n";
-
+		// assembly the global interface 
 		$interface.= $this->getTitle();
-		// ask to log in if not done
-		if ($this->logged != 'true'){
+		// ask to log in if not done for SYST_USER_FOR_DIASPORA
+		if (!$this->podServerSystem->sessions[$this->podServerSystem->getSessionIdx(SYST_USER_FOR_DIASPORA)]->userLogged){
 			$interface.= $this->getAuth();
+
 		}else{	
 			$interface.= $this->getMonitor();
 			$interface.= $this->getTabs();
 			$interface.= $this->getFooter();
 		}
+		return $this->getForm($interface);
+	}
+
+	public function getForm($content,$action="") {
+		$form = '<form method="post" id="podserver" action="'.$action.'" enctype="multipart/form-data">'."\n".
+			'<input type="hidden" name="action" id="action" value="" />'."\n".
+			'<input type="hidden" name="action_on_item" id="action_on_item" value="" />'."\n";
+
+		$form.= $content;
 
 		// include the js script to manage submit form with actions
-		$interface.='<script>'."\n".'
+		$form.= '<script>'."\n".'
 			function formSubmit(action,action_on_item){'."\n".'
 			document.getElementById("action").value=action;'."\n".'
 			document.getElementById("action_on_item").value=action_on_item;'."\n".'
 			document.getElementById("podserver").submit();'."\n".'
 			 }</script>'."\n";
 		// close and send the form
-		$interface.= '</form>'."\n";
-		return $interface;
+		$form.= '</form>'."\n";
+		return $form;
 	}
 
+	// it idsplay the title top zone
 	public function getTitle(){
 		return '<div class="header_bar">'.BIG_TITLE_POD_CONFIGURATION.'</div>';
 
 	}
 
+	// it disply the auth login interface from the "PodServerSystem" class
 	public function getAuth(){
-		$authentication = '';
-		if ($this->logged == 'error') $authentication.= '<h2>'.ERROR_SSH_LOGIN_TRY_AGAIN.'</h2><hr />';
-		else $authentication.= '<h2>'.ENTER_PASSWORD_FOR_USER.' '.USER_FOR_DIASPORA_AND_SUDOER.'</h2><hr />';
-		$authentication.= '<label>Password :</label><input type="password" name="password" id="password" /><br/>
-				<input type="submit" value="'.BUTTON_LOGIN.'" onclick="formSubmit(\'login\');" /><br />';
-		return $authentication;
+		// ask the "PodServerSystem" class to render a autentication interface
+		return $this->podServerSystem->getAuth();		
 	}
 
 	public function getMonitor(){
-		// include the monitor iframe that use js to refesh state of service : principaly apache.
-		return '<iframe src="system/system-monitor.php" scrolling="auto"></iframe>';
+		// include the monitor iframe that use js to refesh status of services and tasks.
+		return '<iframe id="iframe_monitor" name="iframe_monitor" src="system/system-monitor.php" scrolling="auto"></iframe>';
 
 	}
 
+	// it render the tabs that contains the global configuration items
 	public function getTabs(){
 		$actualTab = '';
 		$tabs_headers = '<ol id="toc">'."\n";
@@ -90,7 +98,7 @@ class PodServer {
 				$label_tab_variable = 'label_tab_'.$item->group;
 				global $$label_tab_variable;
 				if ($$label_tab_variable == '') $$label_tab_variable = '$'.$label_tab_variable;
-				$tabs_headers.= '<li><a href="#'.$item->group.'"><span>'.$$label_tab_variable.'</span></a></li>'."\n";
+				$tabs_headers.= '<li><a href="#'.$item->group.'" id="tab_'.$item->group.'" name="tab_'.$item->group.'"><span>'.$$label_tab_variable.'</span></a></li>'."\n";
 				// tabs js loading code
 				if ($js_tabs_loading != '') $js_tabs_loading.=', ';			
 				$js_tabs_loading.='\''.$item->group.'\'';
@@ -119,6 +127,7 @@ class PodServer {
 		
 	}
 
+	// it render the footer with "disconnect" and "record" option
 	public function getFooter(){
 		$footer = '';
 		if ($this->actiondispatcher->status == 0) $footer.= $this->actiondispatcher->error;

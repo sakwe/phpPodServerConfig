@@ -25,7 +25,7 @@ IFRAME {
 	border:none;
 	border-top:solid #272222 3px; 
 	border-bottom:solid #272222 3px; 
-	height:80px;
+	height:0px;
 	margin:0px;
 	margin-bottom:10px;
 	/*background-image:url('../images/seedsstripe.gif');*/
@@ -58,6 +58,11 @@ FORM LABEL {
 	float: left; width: 250px; text-align: right
 }
 
+
+.label_disabled{
+	color:gray;
+}
+
 TEXTAREA, INPUT {
 	box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
 	border:solid 1px #AFAAB4;
@@ -70,7 +75,7 @@ TEXTAREA:disabled, INPUT:disabled {
 	border: #CCCCCC 1px solid; 
 }
 
-input[type="button"] {
+input[type="button"],input[type="submit"] {
 	height:30px;
 	cursor: pointer; 
 	padding: 1px;
@@ -78,17 +83,17 @@ input[type="button"] {
 	background-color: #57B6F7; 
 }
 
-input[type="button"]:hover {
+input[type="button"]:hover,input[type="submit"]:hover {
 	border: 1px #939393 solid;
 	background-color: #067DCF;
 }
 
-input[type="button"]:disabled{
+input[type="button"]:disabled,input[type="submit"]:disabled{
 	background-color: #CCCCCC; 
 	cursor: default;	
 }
 
-input[type="button"]:disabled:hover{
+input[type="button"]:disabled:hover,input[type="submit"]:disabled:hover{
         border: 1px solid #CCCCCC;
 	cursor: default;	
 }

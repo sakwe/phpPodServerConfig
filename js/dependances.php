@@ -50,6 +50,10 @@ function display_dependance()
 						{
 						document.getElementById(item).title = action_to_do + ' ' + document.getElementById("label_for_"+inputs[i].value).innerHTML + ' ' + '<?= TO_ACCESS_THIS_FIELD ?>';
 						}
+					if (document.getElementById("label_for_"+item))
+						{
+						document.getElementById("label_for_"+item).className ='label_disabled';
+						}
 					}
 				else
 					{
@@ -61,8 +65,11 @@ function display_dependance()
 						{
 						document.getElementById(item).title = '';
 						}
+					if (document.getElementById("label_for_"+item))
+						{
+						document.getElementById("label_for_"+item).className ='';
+						}
 					}
-				//document.getElementById(item).label.style.display = "none";
 				}
 			}
 		}

@@ -1,7 +1,8 @@
 <?php
 // files path
 global $config_syst;
-$config_syst = DIRECTORY_DIASPORA.'/config/diaspora.yml';
+$config_syst = DIRECTORY_DIASPORA.'config/diaspora.yml';
+$config_user_do = 'root';
 //---------------------------------------------------------------------
 
 // get the PodServer global configuration
