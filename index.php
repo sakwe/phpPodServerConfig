@@ -13,6 +13,7 @@
 
 // need a session for some datas
 session_start();
+//session_destroy();
 
 // get the system configuration (directories, files, command)
 include($_SERVER['DOCUMENT_ROOT'].'/config.php');
@@ -35,10 +36,14 @@ include($_SERVER['DOCUMENT_ROOT'].'/podserver.php');
 <title><?= BIG_TITLE_POD_CONFIGURATION ?></title>
 <meta name="author" content="Sakwe" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/form.css" type="text/css" rel="stylesheet" />
-<link href="css/tabs.css" rel="stylesheet" type="text/css" />
+<link href='images/favicon.png' rel='shortcut icon'>
+<link href="css/form.css" rel="stylesheet" type="text/css" />
+<link href="css/tabs.css" rel="stylesheet" />
+<link href="css/messi.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="js/showPage.js" type="text/javascript"></script>
 <script src="js/getPage.js" type="text/javascript"></script>
+<script src="js/messi.min.js"></script>
 </head>
 
 <body>
@@ -53,19 +58,18 @@ $podServer = new PodServer();
 	 * From here, you can access to the global configuration items. Exemples : 
 	 *	- $podServer->podServerConfiguration[item_idx]->name to get the name of an item
 	 *	- $podServer->podServerConfiguration[item_idx]->value to get its value
+	 *	- $podServer->podServerSystem->getSession($_SESSION['current_sysuser'])->userLogin
 	 *	- $podServer->actionDispatch('record') to record the current setting in global configuration file
 	 *	- $podServer->actionDispatch('reboot') to reboot the server
 	 */
 
-// call the dispatcher to execute the user action (recording configuration, apply configurations or other system commands)
-if (isset($_POST['action'])) echo $podServer->actionDispatch($_POST['action']);
+// render the PodServer configuration interface with action if given
+echo $podServer->getInterface((isset($_POST['action']))?$_POST['action']:'');
 
-// render the PodServer configuration interface
-echo $podServer->getInterface();
-
+// attach the script that manage monitor show/hide
 ?>
 
 
 </div>
 </body>
-
+</html>

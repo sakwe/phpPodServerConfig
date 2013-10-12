@@ -91,17 +91,24 @@ $podserver_config_map = array
 	array('dyndns_method','network','none','select','','none,ovh,dyndns'),
 	array('dyndns_login','network','dyndns_method','text','',''),
 	array('dyndns_pass','network','dyndns_method','password','',''),
+	array('title_ssl','network','none','title','',''),
+	array('ssl_enable','network','none','checkbox','',''),
+	array('ssl_cert','network','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+	array('ssl_key','network','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+	array('ssl_ca','network','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+
 
 	// pod items to configure
 	array('title_diasp','pod','none','title','',''),
 	array('domain_name','pod','none','text','',''),
 	array('pod_port','pod','none','text','3000',''),
 	array('pod_name','pod','none','text','',''),
-	array('title_ssl','pod','none','title','',''),
-	array('ssl_enable','pod','none','checkbox','',''),
-	array('ssl_cert','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
-	array('ssl_key','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
-	array('ssl_ca','pod','ssl_enable','file','root',DIRECTORY_SSL_CERTIFICATE.$domain_name.'/'),
+	array('title_database','pod','none','title','',''),
+	array('db_host','pod','none','text','localhost',''),
+	array('db_port','pod','none','text','3306',''),
+	array('db_username','pod','none','text','',''),
+	array('db_password','pod','none','password','',''),
+	array('db_charset','pod','none','select','','utf8'),
 
 	// general items to configure
 	array('title_general','general','none','title','',''),
@@ -145,21 +152,23 @@ $podserver_config_map = array
 	array('wordpress_key','services','wordpress_enable','text','',''),
 	array('wordpress_secret','services','wordpress_enable','text','',''),
 
-	// admin items to configure
-	array('title_diasp_admin','administration','none','title','',''),
-	array('admin_account','administration','none','text','',''),
-	array('podmin_email','administration','none','text','',''),
+	// podmin items to configure
+	array('title_diasp_admin','podmin','none','title','',''),
+	array('admin_account','podmin','none','text','',''),
+	array('podmin_email','podmin','none','text','',''),
 
 	// admin items for system operations
 
-	//-------------------------------------------------------------
-	// password change management. use it if you want to be able to change system passaword
-	// you need to keep the "system/actions/exec_passchange.php" file in the right place
+	//*****************************************************************************************
+	// password change management
+	// DO NOT REMOVE IT IF you want to be able to change system passaword
+	// "podServerDispatcher" need to _POST "f_pass_current" , "f_pass_new" and "f_pass_conf" items for "passchange"
 	array('title_password_change','system','none','title','',''),
-	array('f_pass_new','system','none','text','',''),
-	array('f_pass_conf','system','none','text','',''),
+	array('f_pass_current','system','none','password','',''),
+	array('f_pass_new','system','none','password','',''),
+	array('f_pass_conf','system','none','password','',''),
 	array('sys_passchange','system','f_pass_new','system','','passchange'),
-	//--------------------------------------------------------------
+	//*****************************************************************************************
 
 	array('title_system_manage','system','none','title','',''),
 
@@ -177,6 +186,8 @@ $podserver_config_map = array
 
 
 	// these are PodServer software config items
+	// set the language 
+	array('DEF_PODSERVER_LANGUAGE','install','none','select',PODSERVER_LANGUAGE,'auto,fr,en,debug'),
 	// set your diaspora system user
 	array('DEF_SYST_USER_FOR_DIASPORA','install','none','text',SYST_USER_FOR_DIASPORA,''),
 	// set your diaspora directory

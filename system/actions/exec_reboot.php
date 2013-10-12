@@ -1,5 +1,5 @@
 <?php
-
-$this->podServerSystem->addTask("root","reboot",REBOOT_SERVER);
+$actionId = uniqid();
+$this->podServerSystem->addTask("root","reboot",REBOOT_SERVER,$actionId);
 
 ?>

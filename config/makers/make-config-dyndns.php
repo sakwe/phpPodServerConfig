@@ -16,50 +16,50 @@ $config_generated = "";
 //-----------------------------
 
 $config_generated.= '
-#! /bin/bash \n
-\n
-# OVH - DynHost\n
-#\n
-# Permet de mettre à jour le champ DYNHOST\n
-# pour votre nom de domaine.\n
-# Utilise l\'adresse de l\'interface ppp0 de \n
-# votre système Linux.\n
+#! /bin/bash 
 
-# La mise à jour ne se fait que si l\'adresse IP\n
-# a effectivement changé.\n
-# Fichier de log: dynhost.log\n
-cd /var/lib/bind/dyndnsOVH/\n
-\n
-#IP=$(wget -q -O - http://automation.whatismyip.com/n09230945.asp)\n
+# OVH - DynHost
+#
+# Permet de mettre à jour le champ DYNHOST
+# pour votre nom de domaine.
+# Utilise l\'adresse de l\'interface ppp0 de 
+# votre système Linux.
 
-IP=$(curl -s icanhazip.com)\n
-\n
-#IP="192.168.0.1" (for tests)\n
-OPTIONS="-a "$IP\n
-OLDIP=`cat ./old.ip`\n
-echo ---------------------------------- >> ./dynhost.log\n
-echo `date` >> ./dynhost.log \n
-echo Démarrage de DynHost >> ./dynhost.log\n
-\n
-if [ "$IP" ]; then\n
-	if [ "$OLDIP" != "$IP" ]; then\n
-		echo -n "Ancienne IP: " >> ./dynhost.log\n
-		echo $OLDIP >> ./dynhost.log\n
-		echo -n "Nouvelle IP: " >> ./dynhost.log\n
-		echo $IP >> ./dynhost.log\n
-		echo "Mise à jour!" >> ./dynhost.log\n
-		if [ "$OPTIONS" =  "" ]; then \n
-			OPTIONS="-a $IP"\n 
-		fi\n
-		python ipcheck.py $OPTIONS "'.$dyndns_login.'" "'.dyndns_pass.'" "'.$domain_name.'" >> ./dynhost.log\n
-		echo "IP mise a jour chez OVH : $IP"\n
-		echo -n "$IP" > ./old.ip\n				
- 	else\n
-       		echo IP Identique! Pas de mise à jour. >> ./dynhost.log\n
- 	fi\n
- else\n
- 	echo Panique à bord: Aucune IP Disponible!! >> ./dynhost.log\n
- fi\n
+# La mise à jour ne se fait que si l\'adresse IP
+# a effectivement changé.
+# Fichier de log: dynhost.log
+cd /var/lib/bind/dyndnsOVH/
+
+#IP=$(wget -q -O - http://automation.whatismyip.com/n09230945.asp)
+
+IP=$(curl -s icanhazip.com)
+
+#IP="192.168.0.1" (for tests)
+OPTIONS="-a "$IP
+OLDIP=`cat ./old.ip`
+echo ---------------------------------- >> ./dynhost.log
+echo `date` >> ./dynhost.log 
+echo Démarrage de DynHost >> ./dynhost.log
+
+if [ "$IP" ]; then
+	if [ "$OLDIP" != "$IP" ]; then
+		echo -n "Ancienne IP: " >> ./dynhost.log
+		echo $OLDIP >> ./dynhost.log
+		echo -n "Nouvelle IP: " >> ./dynhost.log
+		echo $IP >> ./dynhost.log
+		echo "Mise à jour!" >> ./dynhost.log
+		if [ "$OPTIONS" =  "" ]; then 
+			OPTIONS="-a $IP" 
+		fi
+		python ipcheck.py $OPTIONS "'.$dyndns_login.'" "'.dyndns_pass.'" "'.$domain_name.'" >> ./dynhost.log
+		echo "IP mise a jour chez OVH : $IP"
+		echo -n "$IP" > ./old.ip				
+ 	else
+       		echo IP Identique! Pas de mise à jour. >> ./dynhost.log
+ 	fi
+ else
+ 	echo Panique à bord: Aucune IP Disponible!! >> ./dynhost.log
+ fi
 ';
 
 

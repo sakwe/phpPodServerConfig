@@ -53,7 +53,7 @@ $label_tab_pod ="Pod";
 $label_tab_general ="General";
 $label_tab_mail ="Mail";
 $label_tab_services ="Services";
-$label_tab_administration ="Administration";
+$label_tab_podmin ="Podmin";
 $label_tab_system ="System";
 $label_tab_install ="Install";
 

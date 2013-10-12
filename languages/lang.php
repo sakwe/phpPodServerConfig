@@ -9,6 +9,8 @@ $GLOBALS['_DLANG']='en';
 // Define all available languages.
 // WARNING: uncomment all available languages
 
+
+// all languages that could exists... if not in supported language, we have to create a file and a directory for it translation
 $GLOBALS['_LANG'] = array(
 'af', // afrikaans.
 'ar', // arabic.
@@ -53,15 +55,17 @@ $GLOBALS['_LANG'] = array(
 'zh' // chinese.
 );
 
+if(PODSERVER_LANGUAGE == 'auto'){ 
+	// Set our default language session
+	$_SESSION['lang'] = detect_lang();
 
-// Set our default language session
-$_SESSION['lang'] = detect_lang();   
-
-if(isset($_GET['lang']) && $_GET['lang'] != ''){ 
 	// check if the language is one we support
-	if(in_array($_GET['lang'], $available_langs)){       
-		$_SESSION['lang'] = $_GET['lang']; // Set session
+	if(!in_array($_SESSION['lang'], $available_langs)){
+		$_SESSION['lang'] = $GLOBALS['_DLANG']; 
 	}
+}
+else{
+	$_SESSION['lang']= PODSERVER_LANGUAGE;
 }
 // Include active language
 include($_SERVER['DOCUMENT_ROOT'].'/languages/'.$_SESSION['lang'].'/lang.'.$_SESSION['lang'].'.php');

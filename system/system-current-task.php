@@ -11,12 +11,19 @@ include($_SERVER['DOCUMENT_ROOT'].'/config/config-podserver.php');
 // include the PodServer class
 include($_SERVER['DOCUMENT_ROOT'].'/podserver.php');
 
-$task_idx=0;
-foreach ($podServer->podServerSystem->tasks as $task) {
+
+// instanciate the PodServer configurator (loads the configuration)
+$podServer = new PodServer();
+
+$task_idx='NONE';
+
+foreach ($podServer->podServerSystem->tasksQueue as $task) {
+	$task_idx='ALL_DONE';
 	if ($task->status != 1) {
-		echo $task_idx;
+		echo $task->id;
 		exit;
 	}
 }
-echo -1;
+
+echo $task_idx;
 

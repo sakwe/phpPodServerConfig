@@ -1,6 +1,5 @@
 var xmlHttp
 var localWhereToPut
-
 function showPage(pageToFetch,whereToPut)
 { 
 	xmlHttp=GetXmlHttpObject()

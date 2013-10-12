@@ -18,9 +18,14 @@ class PodServerConfiguration{
 		$this->configurationLoad();
 	}
 
+	/**
+	 * Load the global configuration in the PodServer instance
+	 */
 	function configurationLoad() {
 		global $podserver_config_map;
 		$item_idx = 0;
+		unset($this->itemsConfiguration);
+		$this->itemsConfiguration = array();
 		// load the configuration details for each item in the map
 		foreach ($podserver_config_map  as $itemToConfigure){
 			// get the configuration variable by indirection ($$)
@@ -29,12 +34,16 @@ class PodServerConfiguration{
 			$label_item_variable = 'label_'.$itemToConfigure[0];
 			global $$label_item_variable;
 			if ($$label_item_variable == '') $$label_item_variable = '$'.$label_item_variable;
-			if (isset($_GET['lang']) && $_GET['lang'] == 'debug') $$label_item_variable = '$'.$label_item_variable;
+			if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'debug') $$label_item_variable = '$'.$label_item_variable;
+			// get the help for the item in the correct language by indirection ($$)
+			$help_item_variable = 'help_'.$itemToConfigure[0];
+			global $$help_item_variable;
+			if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'debug') $$help_item_variable = '$'.$help_item_variable;
 			// get the title for the item in the correct language by indirection ($$)
 			$title_item_variable = 'title_'.$itemToConfigure[0];
 			global $$title_item_variable;
 			// show title variable name for language debug
-			if (isset($_GET['lang']) && $_GET['lang'] == 'debug') $$title_item_variable = '$'.$title_item_variable;
+			if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'debug') $$title_item_variable = '$'.$title_item_variable;
 			// get the default value from configuration map if no value found for the item in the configuration file
 			if ($$itemToConfigure[0] == '') $$itemToConfigure[0] = $itemToConfigure[4];
 			// load the item with all datas (map, value, title and label)
@@ -46,7 +55,8 @@ class PodServerConfiguration{
 							$$itemToConfigure[0],
 							$itemToConfigure[5],
 							$$label_item_variable,
-							$$title_item_variable
+							$$title_item_variable,
+							$$help_item_variable
 							);			
 		}
 	}	
@@ -86,6 +96,14 @@ class PodServerConfiguration{
 			else fwrite($file, "\$$key = \"".preg_replace("/[\n|\r|\r\n]+/", " ", trim($val))."\";\n");
 
 		}
+		
+		fwrite($file_soft,"define('PODSERVER_BAN','".addslashes(" ___   _   __   ____  ____  ___  _____   __    \\\\ || //
+| _ \ (_) //\\\\ | ___||  _ \| _ ||  _  \ //\\\\    \\\\||//
+|| \ \| |//  \\\\| |__ | (_)||| ||| (_) ///  \\\\ ====()====
+|| | || |||__|||__  || ___/|| |||    / ||__||   //||\\\\
+||_/ /| |||  || __| || |   ||_||| |\ \ ||  ||  // || \\\\
+|___/ |_|||  |||____||_|   |___||_| \_\||  || ")."');");
+		
 		// save uploaded files to the "uploads" directory
 		foreach ($this->itemsConfiguration as $item){
 			if ($item->type == 'file')	{
@@ -124,6 +142,9 @@ class PodServerConfiguration{
 		// this create a "config/files/config-XXX.conf" whith the maker found
 		$makers = glob($_SERVER['DOCUMENT_ROOT'].'/config/makers/make-config-*.php', GLOB_BRACE);
 		
+		// get an unique ID for this apply action
+		$actionId = uniqid();
+
 		// run all makers in the directory
 		foreach($makers as $maker) {						
 			$pat[0]= 'make-config-';
@@ -146,7 +167,7 @@ class PodServerConfiguration{
 				fwrite($file,$config_generated);
 				fclose($file);
 				// add the task to the "podServerSystem" queue (copy files to their system path to apply configuration)
-				$this->podServerSystem->addTask($config_user_do,'cp ' . $config_done . ' ' . $config_syst,TASK_COPY_FILE_CONFIG);
+				$this->podServerSystem->addTask($config_user_do,'cp ' . $config_done . ' ' . $config_syst,TASK_COPY_FILE_CONFIG,$actionId);
 											
 				/* NOTE : you can add all makers you want by adding a file "config/makers/make-config-YOURMAKERNAME.php" 
 				   In your maker file, you have to correctly configure 
@@ -165,12 +186,12 @@ class PodServerConfiguration{
 				$file_uploads = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $item->name;
 				// if the directory does not exists, create it by adding a "mkdir" task for the system user
 				if (!file_exists($item->values)) {
-					$this->podServerSystem->addTask($item->value,'mkdir ' . $item->values);
+					$this->podServerSystem->addTask($item->value,'mkdir ' . $item->values,TASK_MKDIR_AUTO);
 				}
 				$file_system  = $item->values . $item->name;
 				// adding a "cp" task for the system user			
 				if ($item->values != '' &&  file_exists($file_uploads) )  {
-					$this->podServerSystem->addTask($item->value,'cp ' . $file_uploads . ' ' . $file_system,TASK_COPY_FILE_ITEM);
+					$this->podServerSystem->addTask($item->value,'cp ' . $file_uploads . ' ' . $file_system,TASK_COPY_FILE_ITEM,$actionId);
 				}
 			}
 		}
@@ -185,15 +206,16 @@ class ItemConfiguration{
 	public $name,$group,$depend,$type,$value,$values,$label,$title;
 
 	// put values for the item when construct
-	public function __construct($name,$group,$depend,$type,$value,$values,$label,$title) {
-		$this->name = $name;
-		$this->group = $group;
-		$this->depend = $depend;
-		$this->type = $type;
-		$this->value = $value;
-		$this->values = $values;
-		$this->label = $label;
-		$this->title = $title;
+	public function __construct($name,$group,$depend,$type,$value,$values,$label,$title,$help) {
+		$this->name	= $name;
+		$this->group	= $group;
+		$this->depend	= $depend;
+		$this->type	= $type;
+		$this->value	= $value;
+		$this->values	= $values;
+		$this->label	= $label;
+		$this->title	= $title;
+		$this->help	= $help;
 	}
 
 	// generate the HTML code to render the item
@@ -208,12 +230,12 @@ class ItemConfiguration{
 				{
 				if (file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/' . $this->name))
 					{
-					$html.= '<a href = "/uploads/'. $this->name .'">'.$this->label.'</a> (<a href="javascript:formSubmit(\'delete\',\'' . $this->name . '\');">'.DELETE.'</a>)';
-					}		
+					$html.= '<a href = "/uploads/'. $this->name .'">'.$this->label.'</a> (<a href="javascript:void Messi.ask(\''.DELETE.' ' .$this->name.' ?\', function(val) { if(val==\'Y\') formSubmit(\'delete\',\'' . $this->name . '\');});">'.DELETE.'</a>)';
+					}
 				else
 					{
 					$html.= $this->label.' ('.NONE.')';
-					}			
+					}
 				}
 			else
 				{
@@ -250,16 +272,18 @@ class ItemConfiguration{
 				foreach ($valuesPossible as $valuePossible){
 					$html.= '<option value="'. $valuePossible . '" ' . (($valuePossible == $this->value) ? " selected " : "") . '>'. $valuePossible . '</option>'."\n";
 					}
-				$html.= '</select>'."\n";
+				$html.= '</select><div style="clear:both"></div>'."\n";
 				break; 
 
 			case 'title' : 
 				$html.= "\n". '<h2>'.$this->label.'</h2><hr />'."\n\n";			
 				break;
 
+			// system action items
 			case 'system' : 
 				// a system item will render a button that submit the form with the configured action name in the config-map.php
-				$html.= '<label></label><input class="button" type="button" id="'. $this->name . '" name="'. $this->name . '" value="'.$this->label.'" onclick="formSubmit(\''.$this->values.'\');" />';			
+				$html.= '<label></label><input class="button" type="button" id="'. $this->name . '" name="'. $this->name . '" value="'.$this->label.'" 
+				onclick="new Messi(\''.addslashes($this->help).'\', {title: \''.addslashes($this->label).'?\', modal: true, buttons: [{id: 0, label: \''.YES.'\', val: \'Y\'}, {id: 1, label: \''.NO.'\', val: \'N\'}], callback: function(val) { if(val==\'Y\') formSubmit(\''.$this->values.'\');}});" />';
 				break;
 
 			case 'html' : 
@@ -276,7 +300,7 @@ class ItemConfiguration{
 			 */
 
 			default : 
-				$html.= '<b>'.NO_METHOD_TO_RENDER_THIS_ITEM .'</b><br />Item : '.$this->name. '<br />Type : '.$this->type;
+				$html.= '<b>'.NO_METHOD_TO_RENDER_THIS_ITEM .'</b><br />Item : '.$this->name. '<br />Type : '.$this->type. '<br />'."\n"; 
 				break;
 			
 			}

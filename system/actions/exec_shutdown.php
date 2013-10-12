@@ -1,5 +1,5 @@
 <?php
-
-$this->podServerSystem->addTask("root","shutdown -h NOW",SHUTDOWN_SERVER);
+$actionId = uniqid();
+$this->podServerSystem->addTask("root","shutdown -h now",SHUTDOWN_SERVER,$actionId);
 
 ?>

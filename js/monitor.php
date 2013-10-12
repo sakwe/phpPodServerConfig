@@ -1,30 +1,53 @@
-<?php
-
-
-?>
-
-
-var task_idx = -1;
-
+var task_idx = 'NONE';
+var monitor_shown = false;
 function system_exec(){	
 	if (!document.getElementById("dialog")) {
-		showPage("http://<?= $_SERVER['HTTP_HOST'] ?>/system/system-current-task.php","podserver_current_task");
-		var current_task_idx = parseInt(document.getElementById("podserver_current_task").innerHTML);		
-		if (current_task_idx != task_idx && current_task_idx != -1){
-			task_idx = current_task_idx;
-			showPage("http://<?= $_SERVER['HTTP_HOST'] ?>/system/system-exec.php","podserver_monitor");
+		if (document.getElementById("podserver_current_task")){
+			monitor_shown=false;
+			showPage("http://<?= $_SERVER['HTTP_HOST'] ?>/system/system-current-task.php","podserver_current_task");
+		
+			var current_task_idx = $.trim(document.getElementById("podserver_current_task").innerHTML);		
+			if (current_task_idx != task_idx && current_task_idx != 'NONE'){
+				if (document.getElementById("podserver_monitor")){
+					task_idx = current_task_idx;		
+					showPage("http://<?= $_SERVER['HTTP_HOST'] ?>/system/system-exec.php","podserver_monitor");
+					$("#scroller").mCustomScrollbar("destroy");
+					$("#scroller").mCustomScrollbar({
+						scrollButtons:{
+							enable:true
+						},
+						callbacks:{
+							onScroll:function(){ 
+								$("."+this.attr("id")+"-pos").text(mcs.top);
+							}
+						}
+					});	
+					if (current_task_idx != ''){
+						$(window.parent.document.getElementById("div_monitor")).show();
+						$("#scroller").mCustomScrollbar("scrollTo","bottom");
+					}
+				}
+			}
 		}
 	}
-	window.parent.document.getElementById("iframe_monitor").style.height=getDocHeight()+"px";
+	else{
+		if (!monitor_shown){
+			monitor_shown=true;
+			$(window.parent.document.getElementById("div_monitor")).show();
+			$("#scroller").mCustomScrollbar("destroy");
+			$("#scroller").mCustomScrollbar({
+				scrollButtons:{
+					enable:true
+				},
+				callbacks:{
+					onScroll:function(){ 
+						$("."+this.attr("id")+"-pos").text(mcs.top);
+					}
+				}
+			});	
+			}
+	}
 }
-
-function getDocHeight() {
-    var D = document;
-    return Math.max(
-        D.body.scrollHeight, D.documentElement.scrollHeight,
-        D.body.offsetHeight, D.documentElement.offsetHeight,
-        D.body.clientHeight, D.documentElement.clientHeight
-    );
-}
-
+showPage("http://<?= $_SERVER['HTTP_HOST'] ?>/system/system-exec.php","podserver_monitor");
 window.setInterval("system_exec()",2000);
+

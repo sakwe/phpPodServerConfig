@@ -1,8 +1,15 @@
 div.content {
-    border-top: #272222 solid 3px;
-    border-bottom: #272222 solid 3px;
-    clear: left;
-    padding: 1em;
+	border: #FFF solid 1px;
+	margin-left:8px;
+	margin-right:8px;
+	margin-bottom:8px;
+	-webkit-border-radius:3px; 
+	-moz-border-radius:3px; 
+	border-radius:3px;
+	border-radius: 6px;
+	opacity: 1;
+	box-shadow: 0 0 0.3em #444;
+	clear: left;
 
 }
 
@@ -11,10 +18,11 @@ div.content.inactive {
 }
 
 ol#toc {
-    height: 2em;
+    height: 25px;
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-left:13px;
 }
 
 ol#toc a {
@@ -22,7 +30,7 @@ ol#toc a {
     color: #FFF;
     display: block;
     float: left;
-    height: 2em;
+    height: 25px;
     padding-left: 10px;
     text-decoration: none;
     border-radius: 5px 5px 0px 0px;
@@ -35,6 +43,20 @@ ol#toc a {
 ol#toc a:hover {
     background-color: #222;
     background-position: 0 -120px;
+    text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.25);
+  background-color: #3b3b3b;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.25, #3b3b3b), color-stop(0.75, #575757));
+  background-image: linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -moz-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -o-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -webkit-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -ms-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  -webkit-border-radius: 5px 5px 0 0px;
+          border-radius: 5px 5px 0 0px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
 }
 
 ol#toc a:hover span {
@@ -51,6 +73,20 @@ ol#toc li a.active {
     background-position: 0 -60px;
     color: #fff;
     font-weight: bold;
+    text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.25);
+  background-color: #3b3b3b;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.25, #3b3b3b), color-stop(0.75, #575757));
+  background-image: linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -moz-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -o-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -webkit-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  background-image: -ms-linear-gradient(bottom, #3b3b3b 25%, #575757 75%);
+  -webkit-border-radius: 5px 5px 0 0px;
+          border-radius: 5px 5px 0 0px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 5px;
 }
 
 ol#toc li a.active span {
