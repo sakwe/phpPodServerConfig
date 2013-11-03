@@ -1,5 +1,7 @@
-
 === phpPodServerConfig ===
+
+![PodServerConfig](images/podserverconfig.png?raw=true)
+
 
 The project is currently unusable.
 ------------------------------
