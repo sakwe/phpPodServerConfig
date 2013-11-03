@@ -1,100 +1,99 @@
 <?php
 
-define('TITLE_PODSERVER','PodServer');
+define("TITLE_PODSERVER","PodServer");
 
-define('BIG_TITLE_POD_CONFIGURATION','Configuration et lancement rapide du Pod');
+define("BIG_TITLE_POD_CONFIGURATION","Configuration et lancement rapide du Pod");
 
-define('LABEL_SYS_USER','Utilisateur système');
+define("LABEL_SYS_USER","Utilisateur système");
 
-define('LABEL_PASSWORD','Mot de passe');
+define("LABEL_PASSWORD","Mot de passe");
 
-define('BUTTON_LOGIN','Connexion');
+define("BUTTON_LOGIN","Connexion");
 
-define('BUTTON_LOGOUT','Déconnecter');
+define("BUTTON_LOGOUT","Déconnecter");
 
-define('ERROR_SSH_LOGIN_TRY_AGAIN','Mot de pass incorrect. Essayez encore.');
+define("ERROR_SSH_LOGIN_TRY_AGAIN","Mot de pass incorrect. Essayez encore.");
 
-define('ENTER_USER_AND_PASSOWRD','Saisissez votre nom d\'utilisateur et votre mot de passe');
+define("ENTER_USER_AND_PASSOWRD","Saisissez votre nom d\"utilisateur et votre mot de passe");
 
-define('ENTER_PASSWORD_FOR_USER','Saisissez le mot de passe pour l\'utilisateur');
+define("ENTER_PASSWORD_FOR_USER","Saisissez le mot de passe pour l\"utilisateur");
 
-define('THIS_TASK_NEED_AUTENTICATION','Cette tâche nécessite une authentification');
+define("THIS_TASK_NEED_AUTENTICATION","Cette tâche nécessite une authentification");
 
-define('DIALOG_PASS_CHANGE','Changement de mot de passe pour l\'utilisateur "'.$_SESSION['current_sysuser'].'"');
+define("DIALOG_PASS_CHANGE","Changement de mot de passe pour l\"utilisateur \"".$_SESSION["current_sysuser"]."\"");
 
-define('ERROR_PASSWORD_CONFIRMATION_NOT_THE_SAME','Le mot de passe fourni et la confirmation ne sont pas identiques. Veuilliez reconfirmer.');
+define("ERROR_PASSWORD_CONFIRMATION_NOT_THE_SAME","Le mot de passe fourni et la confirmation ne sont pas identiques. Veuilliez reconfirmer.");
 
-define('ERROR_PASSWORD_MUST_HAVE_8_LETTERS','Le mot de passe doit contenir au moins 8 caractères.');
+define("ERROR_PASSWORD_MUST_HAVE_8_LETTERS","Le mot de passe doit contenir au moins 8 caractères.");
 
-define('PASSWORD_CHANGED','Mot de passe modifié');
+define("PASSWORD_CHANGED","Mot de passe modifié");
 
-define('ENTER_A_SYSTEM_COMMAND','Entrez une commande système');
+define("ENTER_A_SYSTEM_COMMAND","Entrez une commande système");
 
-define('CLEAR_TASKS_QUEUE_HISTORY','Vider la queue');
+define("CLEAR_TASKS_QUEUE_HISTORY","Vider la queue");
 
-define('SHOW_HIDE_MONITOR','Montrer/cacher le terminal PodServer');
+define("SHOW_HIDE_TERMINAL","Montrer/cacher le terminal PodServer");
 
-define('BUTTON_RECORD','Enregistrer');
+define("BUTTON_RECORD","Enregistrer");
 
-define('CAN_APPLY_CONFIGURATION_TO_SYSTEM','La configuration globale a été sauvegardée. Vous pouvez maintenant appliquer cette configuration au système.');
+define("CAN_APPLY_CONFIGURATION_TO_SYSTEM","La configuration globale a été sauvegardée. Vous pouvez maintenant appliquer cette configuration au système.");
 
-define('CONFIGURATION_RECORDED','Configuration enregistrée');
+define("CONFIGURATION_RECORDED","Configuration enregistrée");
 
-define('ACTION_TO_DO_CATCH_FIELD','Vous devez saisir le champ');
+define("ACTION_TO_DO_CATCH_FIELD","Vous devez saisir le champ");
 
-define('ACTION_TO_DO_CHECK_FIELD','Vous devez activer le champ');
+define("ACTION_TO_DO_CHECK_FIELD","Vous devez activer le champ");
 
-define('ACTION_TO_DO_SELECT_FIELD','Vous devez sélectionner le champ');
+define("ACTION_TO_DO_SELECT_FIELD","Vous devez sélectionner le champ");
 
-define('TO_ACCESS_THIS_FIELD','pour accéder à ce champ');
+define("TO_ACCESS_THIS_FIELD","pour accéder à ce champ");
 
-define('YES','Oui');
+define("YES","Oui");
 
-define('NO','Non');
+define("NO","Non");
 
-define('CANCEL','Annuler');
+define("CANCEL","Annuler");
 
-define('CLOSE','Fermer');
+define("CLOSE","Fermer");
 
-define('INFO','Information');
+define("INFO","Information");
 
-define('SUCCESS','Réussi');
+define("SUCCESS","Réussi");
 
-define('WARNING','Attention');
+define("WARNING","Attention");
 
-define('ERROR','Erreur');
+define("ERROR","Erreur");
 
-define('QUESTION','Question');
+define("QUESTION","Question");
 
-define('PRESENT','Présent');
+define("PRESENT","Présent");
 
-define('NONE','Aucun');
+define("NONE","Aucun");
 
-define('DELETE','Supprimer');
+define("DELETE","Supprimer");
 
-define('UPLOAD_FILE_ERROR','Erreur lors de l\'envoi de fichier');
+define("UPLOAD_FILE_ERROR","Erreur lors de l'envoi de fichier");
 
-define('FILE_GENERATED_BY','Fichier généré par');
+define("FILE_GENERATED_BY","Fichier généré par");
 
-define('SYSTEM_TASK_IN_QUEUE','Tâche dans la file d\'attente');
+define("SYSTEM_TASK_IN_QUEUE","Tâche dans la file d'attente");
 
-define('TASK_COPY_FILE_CONFIG','Copie d\'un fichier de configuration système');
+define("TASK_COPY_FILE_CONFIG","Copie d'un fichier de configuration système");
 
-define('TASK_COPY_FILE_ITEM','Copie d\'un fichier système envoyé');
+define("TASK_COPY_FILE_ITEM","Copie d'un fichier système envoyé");
 
-define('TASK_FROM_PROMPT','Tâche lancée via le terminal PodServer');
+define("TASK_FROM_PROMPT","Tâche lancée via le terminal PodServer");
 
-define('ERROR_SSHLOGIN_INTO_SSHEXEC','Erreur de login ssh lors de l\'exécution de la commande');
+define("ERROR_SSHLOGIN_INTO_SSHEXEC","Erreur de login ssh lors de l'exécution de la commande");
 
-define('ERROR_CAN_NOT_OPEN_CONFIG_PODSERVER_PHP','Impossible d\'ouvrir le fichier "config/config-podserver.php"');
+define("ERROR_CAN_NOT_OPEN_CONFIG_PODSERVER_PHP","Impossible d'ouvrir le fichier \"config/config-podserver.php\"");
 
-define('NO_METHOD_TO_RENDER_THIS_ITEM','Ce type de champ n\'est pas pris en charge');
-
+define("NO_METHOD_TO_RENDER_THIS_ITEM","Ce type de champ n'est pas pris en charge");
 
 // Labels for tabs headers
 $label_tab_network	= "Réseau";
 $label_tab_pod 		= "Pod";
-$label_tab_general	= "General";
+$label_tab_general	= "Général";
 $label_tab_mail 	= "Mail";
 $label_tab_services 	= "Services";
 $label_tab_podmin	= "Podmin";
@@ -179,7 +178,7 @@ $label_admin_account		= "Utilisateur Podmin (identifiant court)";
 $label_podmin_email		= "Adresse mail du Podmin";
 
 // Labels and titles for system actions
-$label_title_password_change 	= "Mot de passe l'utilisateur \"" . $_SESSION['current_sysuser']."\"";
+$label_title_password_change 	= "Mot de passe l'utilisateur \"" . $_SESSION["current_sysuser"]."\"";
 $label_f_pass_current		= "Mot de passe actuel";
 $label_f_pass_new 		= "Nouveau mot de passe";
 $label_f_pass_conf 		= "Confirmer le mot de passe";
@@ -199,7 +198,7 @@ $help_sys_update 		= "Cette action va appliquer les mises à jour système. Les 
 
 
 // Labels for this software install configuration items
-$label_DEF_PODSERVER_LANGUAGE		= "Langue utilisée pour l'interface";
+$label_DEF_PODSERVER_LANGUAGE		= "Langue utilisée pour l\"interface\"";
 $label_DEF_SYST_USER_FOR_DIASPORA	= "Utilisateur système pour Diaspora*";
 $label_DEF_DIRECTORY_DIASPORA		= "Répertoire d'installation de Diaspora*";
 $label_DEF_DIRECTORY_SSL_CERTIFICATE	= "Répertoire système pour les certificats SSL";

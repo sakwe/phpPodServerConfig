@@ -40,7 +40,7 @@ Just copy the php project content in the directory of your choice and ensure it'
 If you have a fresh apache server installed and have no idea, just open the file "/etc/apache2/sites-available/default" and change the "DocumentRoot" value to your directory.
 
 	CURRENTLY : 
-	- You have to ensure www-data user (the one that runs apache) have write access at least to "config.php", "system/tasks.log" , "config/config-podserver.php" and the "config/files/" directory
+	- You have to ensure www-data user (the one that runs apache) have write access at least to "config.php", "system/tasks.log" , "config/podserver_config.php" and the "config/files/" directory
 	- You have to open "config.php" and type the correct system user for SYST_USER_FOR_DIASPORA that will log in to this software
 
 
@@ -77,8 +77,8 @@ If you have a fresh apache server installed and have no idea, just open the file
 - The whole configuration interface is rendered with tabs that contains items. 
 - Items are text input, check box, select list, passwords, titles or buttons.
 - All items of the global configuration are built from : 
-	- "confi-map.php" : description of items, you can read more details in this IMPORTANT file
-	- "config-podserver.php" : values of items, auto-generated file by "PodServerConfiguration"
+	- "podserver_map.php" : description of items, you can read more details in this IMPORTANT file
+	- "podserver_config.php" : values of items, auto-generated file by "PodServerConfiguration"
 	- "languages/XX/lang.XX.php" : labels and titles of items, there you can make all translations you need (YOUR_URL/?lang=debug for "language debugging")
 - The "PodServer" class (podserver.php) is the software's main object
 	- it use the "PodServerSystem" class to autenticate trough SSH and run system commands (tasks)
@@ -91,7 +91,7 @@ If you have a fresh apache server installed and have no idea, just open the file
 - The actions are described and ran from "system/actions/exec_*.php"
 	- note that "login", "logout", "record" and "apply" actions are seemed into "phpPodServerConfig" code and don't have an "exec_*.php" file
 	- an action file contains "podServerSystem->addTask(...)" entries
-	- an action is ran by a "system item button" described in the "config/config-map.php"
+	- an action is ran by a "system item button" described in the "config/podserver_map.php"
 - The main interface contains a monitor frame that execute tasks from the sessions tasks queue, one by one.
 	- the monitor main script is "system/system-monitor.php"
 	- the monitoring is done by a javascript "js/monitor.php" that check "system/system-current-task.php" and run "system/system-exec.php" if needed 

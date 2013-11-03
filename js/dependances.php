@@ -2,7 +2,7 @@
 
 // get the language for the interface
 include($_SERVER['DOCUMENT_ROOT'].'/config.php');
-include($_SERVER['DOCUMENT_ROOT'].'/languages/lang.php');
+include($_SERVER['DOCUMENT_ROOT'].'/languages/podserver_language.php');
 
 ?>
 
