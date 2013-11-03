@@ -2638,3 +2638,98 @@ Ign http://webmin.mirror.somersettechsolutions.co.uk sarge/contrib Translation-e
 Atteint http://download.webmin.com sarge/contrib i386 Packages
 
 -------------------------------------------------------------
+diaspora run : GO_TO_DIASPORA_DIRECTORY
+1 for : cd /home/diaspora/diaspora/
+
+-------------------------------------------------------------
+diaspora run : GIT_PULL
+1 for : git pull
+fatal: No remote repository specified.  Please, specify either a URL or a
+remote name from which new revisions should be fetched.
+
+-------------------------------------------------------------
+diaspora run : GO_TO_DIASPORA_DIRECTORY
+1 for : cd /home/diaspora/diaspora/
+
+-------------------------------------------------------------
+diaspora run : UPDATE_BUNDLE
+1 for : bundle
+Bundler::GemfileNotFound
+
+-------------------------------------------------------------
+diaspora run : GO_TO_DIASPORA_DIRECTORY
+1 for : cd /home/diaspora/diaspora/
+
+-------------------------------------------------------------
+diaspora run : UPDATE_DATABASE
+1 for : RAILS_ENV=production bundle exec rake db:migrate
+Could not locate Gemfile
+
+-------------------------------------------------------------
+diaspora run : GO_TO_DIASPORA_DIRECTORY
+1 for : cd /home/diaspora/diaspora/
+
+-------------------------------------------------------------
+diaspora run : UPDATE_ASSETS
+1 for : bundle exec rake assets:precompile
+Could not locate Gemfile
+
+-------------------------------------------------------------
+diaspora run : Tâche lancée via le terminal PodServer
+1 for : ls -l
+total 32
+drwxr-xr-x  2 root     root     4096 oct  1 04:00 backup
+drwxr-xr-x  3 root     root     4096 oct  8 06:18 certificate
+drwxr-xr-x 16 diaspora diaspora 4096 sep 30 23:37 diaspora
+drwxr-x---  2 diaspora diaspora 4096 oct  1 05:39 dyndns
+drwxrwxr-x  4 www-data www-data 4096 oct  5 02:05 OLD
+drwxr-xr-x 12 www-data www-data 4096 oct 13 03:27 podserver
+drwxr-xr-x  3 diaspora diaspora 4096 nov  3 04:20 vines
+drwxr-xr-x  6 diaspora diaspora 4096 nov  3 03:02 vines-sql
+
+-------------------------------------------------------------
+root run : Copie d'un fichier de configuration système
+1 for : cp /home/diaspora/podserver/config/files/config-diaspora.conf /home/diaspora/diaspora/config/diaspora.yml
+
+-------------------------------------------------------------
+root run : Copie d'un fichier de configuration système
+1 for : cp /home/diaspora/podserver/config/files/config-dyndns.conf /home/diaspora/dyndns/dynhost
+
+-------------------------------------------------------------
+root run : Copie d'un fichier de configuration système
+1 for : cp /home/diaspora/podserver/config/files/config-interfaces.conf /etc/network/interfaces
+
+-------------------------------------------------------------
+root run : Copie d'un fichier de configuration système
+1 for : cp /home/diaspora/podserver/config/files/config-vhost.conf /etc/apache2/sites-enabled/vhost-diaspora.conf
+
+-------------------------------------------------------------
+root run : Copie d'un fichier système envoyé
+1 for : cp /home/diaspora/podserver/uploads/ssl_cert /home/diaspora/certificate/pod.wojtalik.be/ssl_cert
+
+-------------------------------------------------------------
+root run : RESTART_APACHE
+1 for : /etc/init.d/apache2 reload
+Reloading web server config: apache2 failed!
+
+-------------------------------------------------------------
+root run : RESTART_REDIS
+1 for : /etc/init.d/redis-server restart
+Stopping redis-server: redis-server.
+
+-------------------------------------------------------------
+root run : RESTART_DIASPORA
+1 for : /etc/init.d/diaspora restart
+Starting redis-server: redis-server.
+
+-------------------------------------------------------------
+root run : RESTART_NETWORK
+1 for : /etc/init.d/networking restart
+Running /etc/init.d/networking restart is deprecated because it may not re-enable some interfaces ... (warning).
+Reconfiguring network interfaces.../etc/network/interfaces:12: option with empty value
+ifdown: couldn't read interfaces file "/etc/network/interfaces"
+/etc/network/interfaces:12: option with empty value
+ifup: couldn't read interfaces file "/etc/network/interfaces"
+failed.
+
+-------------------------------------------------------------
